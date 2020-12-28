@@ -1,5 +1,10 @@
+import URLInput from "@components/selection/URLInput";
+
 export default {
   name: "YoutubeShuffle",
-  components: {},
+  components: {
+    URLInput,
+  },
   data: () => ({}),
+  mounted: () => {},
 };
