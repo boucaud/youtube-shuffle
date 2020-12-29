@@ -12,15 +12,14 @@
     <v-main>
       <v-container fluid>
         <template v-if="urlIdArray && urlIdArray.length">
-          <YoutubeVideo :videoId="'XYr5IC-mGi4'" />
+          <YoutubeVideo
+            :videoId="videoIdArray[currentVideoIndex]"
+            @videoEnded="nextVideo()"
+          />
+          <!-- TODO: can just pass the index directly... -->
           <YoutubePlaylist
-            :currentVideoId="'XYr5IC-mGi4'"
-            :videoIdArray="[
-              'KS2JZlhnN7c',
-              '53I6fcFXqxo',
-              'XYr5IC-mGi4',
-              '8Lyvv_bhzD0',
-            ]"
+            :currentVideoId="videoIdArray[currentVideoIndex]"
+            :videoIdArray="videoIdArray"
           />
         </template>
         <URLInput v-else />
@@ -47,6 +46,9 @@ export default {
   },
   data: () => ({
     urlIdArray: null, // TODO: store ?
+    currentVideoIndex: 0,
+    videoIdArray: ["KS2JZlhnN7c", "53I6fcFXqxo", "XYr5IC-mGi4", "8Lyvv_bhzD0"],
+    loop: true,
   }),
   mounted() {
     const search = window.location.search;
@@ -59,6 +61,15 @@ export default {
         }
       }
     }
+  },
+  methods: {
+    nextVideo() {
+      if (this.currentVideoIndex < this.videoIdArray.length - 1 && this.loop) {
+        this.currentVideoIndex++;
+      } else if (this.loop) {
+        this.currentVideoIndex = 0;
+      }
+    },
   },
 };
 </script>
