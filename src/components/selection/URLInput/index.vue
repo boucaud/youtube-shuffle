@@ -31,8 +31,8 @@ export default {
     const search = window.location.search;
     if (search && search.length) {
       const params = new URLSearchParams(search);
-      if (params.has("id[]")) {
-        const idList = params.getAll("id[]");
+      if (params.has("id")) {
+        const idList = params.getAll("id");
         if (idList && idList.length) {
           this.urlIdList = idList;
         }

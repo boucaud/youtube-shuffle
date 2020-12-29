@@ -16,7 +16,7 @@ export function buildURLFromIdArray(idArray) {
   return;
   }
   const searchParams = new URLSearchParams()
-  idArray.forEach((id) => searchParams.append("id[]", id));
+  idArray.forEach((id) => searchParams.append("id", id));
 
   const url = new URL(`?${searchParams.toString()}`, 'http://localhost:8080');
   return url.href;
