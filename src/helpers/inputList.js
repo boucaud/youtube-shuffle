@@ -1,5 +1,5 @@
 export function parseInputListToPlaylistIdArray(listAsText) {
-  if (listAsText.length === 0) {
+  if (!listAsText || listAsText.length === 0) {
     return null;
   }
   const idArray = listAsText.split("\n").map((candidate) => {
@@ -11,4 +11,15 @@ export function parseInputListToPlaylistIdArray(listAsText) {
   return idArray;
 }
 
-export default { parseInputListToPlaylistIdArray };
+export function buildURLFromIdArray(idArray) {
+  if (!idArray || idArray.length === 0) {
+  return;
+  }
+  const searchParams = new URLSearchParams()
+  idArray.forEach((id) => searchParams.append("id[]", id));
+
+  const url = new URL(`?${searchParams.toString()}`, 'http://localhost:8080');
+  return url.href;
+}
+
+export default { parseInputListToPlaylistIdArray, buildURLFromIdArray };
