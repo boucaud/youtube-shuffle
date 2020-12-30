@@ -1,14 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import state from "@store/state";
+import player from "@store/player";
+import controls from "@store/controls";
 
 Vue.config.devtools = true;
 Vue.use(Vuex);
 
 export const ROOT_STATE = {
   modules: {
-    state,
+    player,
+    controls,
   },
 };
 

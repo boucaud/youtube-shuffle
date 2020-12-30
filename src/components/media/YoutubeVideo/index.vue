@@ -9,7 +9,7 @@
 
 <script>
 /* eslint-disable no-undef */
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "YoutubeVideo",
@@ -34,7 +34,7 @@ export default {
     this.initializePlayer(this.videoId);
   },
   methods: {
-    ...mapMutations({ nextVideo: "nextVideo" }),
+    ...mapActions({ nextVideo: "nextVideo" }),
     handleVideoEnded() {
       this.nextVideo();
     },

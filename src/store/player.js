@@ -40,10 +40,6 @@ export default {
       },
     ],
     currentVideoIndex: 0,
-
-    loop: true,
-    autoPlayNextVideo: true,
-    darkTheme: false,
   },
   getters: {
     getVideoIds(state) {
@@ -68,12 +64,8 @@ export default {
     },
   },
   mutations: {
-    nextVideo(state) {
-      if (state.currentVideoIndex < state.videoArray.length - 1 && state.loop) {
-        state.currentVideoIndex++;
-      } else if (state.loop) {
-        state.currentVideoIndex = 0;
-      }
+    incrementCurrentVideoIndex(state) {
+      ++state.incrementCurrentVideoIndex;
     },
     setVideoIndex(state, index) {
       if (index >= 0 && index < state.videoArray.length) {
@@ -84,5 +76,20 @@ export default {
       state.videoIds = ids;
     },
   },
-  actions: {},
+  actions: {
+    shuffleVideos({ state }, payload) {
+      console.log(state, payload);
+    },
+    nextVideo({ state, rootGetters, commit }) {
+      if (
+        state.currentVideoIndex < state.videoArray.length - 1 &&
+        rootGetters.getAutoPlayNextVideo
+      ) {
+        commit("incrementCurrentVideoIndex");
+        state.currentVideoIndex++;
+      } else if (rootGetters.getLoop) {
+        commit("setCurrentVideoIndex", 0);
+      }
+    },
+  },
 };
