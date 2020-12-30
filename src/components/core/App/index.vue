@@ -39,6 +39,8 @@ import URLInput from "@components/selection/URLInput";
 import YoutubePlaylist from "@components/media/YoutubePlaylist";
 import YoutubeVideo from "@components/media/YoutubeVideo";
 
+import { mapGetters } from "vuex";
+
 export default {
   name: "YoutubeShuffle",
   components: {
@@ -50,6 +52,12 @@ export default {
   data: () => ({
     urlIdArray: null, // TODO: store ?
   }),
+  computed: { ...mapGetters({ darkTheme: "getDarkTheme" }) },
+  watch: {
+    darkTheme(val) {
+      this.$vuetify.theme.dark = val;
+    },
+  },
   mounted() {
     const search = window.location.search;
     if (search && search.length) {
@@ -61,6 +69,8 @@ export default {
         }
       }
     }
+
+    this.$vuetify.theme.dark = this.darkTheme;
   },
 };
 </script>

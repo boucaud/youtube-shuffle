@@ -40,7 +40,6 @@ export default {
         return this.$store.getters.getDarkTheme;
       },
       set(value) {
-        this.$vuetify.theme.dark = value;
         this.$store.commit("setDarkTheme", value);
       },
     },
