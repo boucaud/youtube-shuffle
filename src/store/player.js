@@ -96,7 +96,7 @@ export default {
         commit("incrementCurrentVideoIndex");
         state.currentVideoIndex++;
       } else if (rootGetters.getLoop) {
-        commit("setCurrentVideoIndex", 0);
+        commit("setVideoIndex", 0);
       }
     },
   },

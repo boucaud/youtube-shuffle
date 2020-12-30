@@ -40,7 +40,6 @@ export default {
   },
   watch: {
     currentVideoIndex(index) {
-      console.log("change video");
       this.activeVideoIndex = index;
     },
     activeVideoIndex(index) {
