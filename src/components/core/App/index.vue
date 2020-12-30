@@ -51,23 +51,35 @@ export default {
     videoArray: [
       {
         id: "KS2JZlhnN7c",
-        name: "video name 1",
-        channel: "Channel 1",
+        name:
+          "Anton Serra , Robse , Eddy , Marius B , Kalan et Hakan chez Oster Lapwass N°16022018",
+        channel: "lapwass",
       },
       {
         id: "53I6fcFXqxo",
-        name: "video name 2",
-        channel: "Channel 2",
+        name: "A. G. Cook - Silver (Official Video)",
+        channel: "PC Music",
       },
       {
         id: "XYr5IC-mGi4",
-        name: "video name 3",
-        channel: "Channel 3",
+        name: "Billy Talent - Saint Veronika - Official Video",
+        channel: "Billy Talent",
       },
       {
         id: "8Lyvv_bhzD0",
-        name: "video name 4",
-        channel: "Channel 4",
+        name: "100 gecs - sympathy 4 the grinch {VISUALIZER}",
+        channel: "100 gecs",
+      },
+      {
+        id: "qfn6xX0gZ_U",
+        name:
+          "90s Classic French Rap Mix (ft. Oxmo Puccino, La Rumeur, Lunatic, Shurik'n, Fabe..)",
+        channel: "Magical Mystery Mix",
+      },
+      {
+        id: "Xw5AiRVqfqk",
+        name: "Aphex Twin - Selected Ambient Works 85-92",
+        channel: "Aphex Twin",
       },
     ],
     loop: true,
