@@ -13,13 +13,13 @@
       <v-container fluid>
         <template v-if="urlIdArray && urlIdArray.length">
           <YoutubeVideo
-            :videoId="videoIdArray[currentVideoIndex]"
+            :videoId="videoArray[currentVideoIndex].id"
             @videoEnded="nextVideo()"
           />
           <!-- TODO: can just pass the index directly... -->
           <YoutubePlaylist
             :currentVideoIndex="currentVideoIndex"
-            :videoIdArray="videoIdArray"
+            :videoArray="videoArray"
             @videoChosen="setVideoIndex"
           />
         </template>
@@ -48,7 +48,28 @@ export default {
   data: () => ({
     urlIdArray: null, // TODO: store ?
     currentVideoIndex: 0,
-    videoIdArray: ["KS2JZlhnN7c", "53I6fcFXqxo", "XYr5IC-mGi4", "8Lyvv_bhzD0"],
+    videoArray: [
+      {
+        id: "KS2JZlhnN7c",
+        name: "video name 1",
+        channel: "Channel 1",
+      },
+      {
+        id: "53I6fcFXqxo",
+        name: "video name 2",
+        channel: "Channel 2",
+      },
+      {
+        id: "XYr5IC-mGi4",
+        name: "video name 3",
+        channel: "Channel 3",
+      },
+      {
+        id: "8Lyvv_bhzD0",
+        name: "video name 4",
+        channel: "Channel 4",
+      },
+    ],
     loop: true,
   }),
   mounted() {
@@ -65,14 +86,14 @@ export default {
   },
   methods: {
     nextVideo() {
-      if (this.currentVideoIndex < this.videoIdArray.length - 1 && this.loop) {
+      if (this.currentVideoIndex < this.videoArray.length - 1 && this.loop) {
         this.currentVideoIndex++;
       } else if (this.loop) {
         this.currentVideoIndex = 0;
       }
     },
     setVideoIndex(index) {
-      if (index >= 0 && index < this.videoIdArray.length) {
+      if (index >= 0 && index < this.videoArray.length) {
         this.currentVideoIndex = index;
       }
     },
