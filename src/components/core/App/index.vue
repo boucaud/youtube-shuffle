@@ -18,6 +18,7 @@
                 :videoId="videoArray[currentVideoIndex].id"
                 @videoEnded="nextVideo()"
               />
+              <PlaybackSettings />
             </v-col>
             <v-col>
               <!-- TODO: can just pass the index directly... -->
@@ -40,6 +41,7 @@
 </template>
 
 <script>
+import PlaybackSettings from "@components/media/PlaybackSettings";
 import URLInput from "@components/selection/URLInput";
 import YoutubePlaylist from "@components/media/YoutubePlaylist";
 import YoutubeVideo from "@components/media/YoutubeVideo";
@@ -47,6 +49,7 @@ import YoutubeVideo from "@components/media/YoutubeVideo";
 export default {
   name: "YoutubeShuffle",
   components: {
+    PlaybackSettings,
     URLInput,
     YoutubePlaylist,
     YoutubeVideo,
