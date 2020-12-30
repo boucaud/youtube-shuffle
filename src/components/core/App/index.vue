@@ -18,8 +18,9 @@
           />
           <!-- TODO: can just pass the index directly... -->
           <YoutubePlaylist
-            :currentVideoId="videoIdArray[currentVideoIndex]"
+            :currentVideoIndex="currentVideoIndex"
             :videoIdArray="videoIdArray"
+            @videoChosen="setVideoIndex"
           />
         </template>
         <URLInput v-else />
@@ -68,6 +69,11 @@ export default {
         this.currentVideoIndex++;
       } else if (this.loop) {
         this.currentVideoIndex = 0;
+      }
+    },
+    setVideoIndex(index) {
+      if (index >= 0 && index < this.videoIdArray.length) {
+        this.currentVideoIndex = index;
       }
     },
   },
