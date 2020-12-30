@@ -53,8 +53,6 @@ export default {
       const container = this.$refs.player;
       window.onYouTubeIframeAPIReady = () => {
         this.player = new YT.Player(container, {
-          height: "390",
-          width: "640",
           videoId: id,
           events: {
             onReady: () => {

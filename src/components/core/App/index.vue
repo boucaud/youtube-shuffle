@@ -10,21 +10,18 @@
 
     <!-- Provides the application the proper gutter -->
     <v-main>
-      <v-container fluid>
-        <template v-if="urlIdArray && urlIdArray.length">
-          <v-layout>
-            <v-col>
-              <YoutubeVideo />
-              <PlaybackSettings />
-            </v-col>
-            <v-col>
-              <!-- TODO: can just pass the index directly... -->
-              <YoutubePlaylist />
-            </v-col>
-          </v-layout>
+      <component v-if="urlIdArray && urlIdArray.length" :is="layout">
+        <template v-slot:player>
+          <YoutubeVideo />
         </template>
-        <URLInput v-else />
-      </v-container>
+        <template v-slot:playlist>
+          <YoutubePlaylist />
+        </template>
+        <template v-slot:controls>
+          <PlaybackSettings />
+        </template>
+      </component>
+      <URLInput v-else />
     </v-main>
 
     <v-footer app>
@@ -39,11 +36,16 @@ import URLInput from "@components/selection/URLInput";
 import YoutubePlaylist from "@components/media/YoutubePlaylist";
 import YoutubeVideo from "@components/media/YoutubeVideo";
 
+import HorizontalLayout from "@components/layouts/HorizontalLayout";
+import VerticalLayout from "@components/layouts/VerticalLayout";
+
 import { mapGetters } from "vuex";
 
 export default {
   name: "YoutubeShuffle",
   components: {
+    HorizontalLayout,
+    VerticalLayout,
     PlaybackSettings,
     URLInput,
     YoutubePlaylist,
@@ -52,7 +54,17 @@ export default {
   data: () => ({
     urlIdArray: null, // TODO: store ?
   }),
-  computed: { ...mapGetters({ darkTheme: "getDarkTheme" }) },
+  computed: {
+    ...mapGetters({ darkTheme: "getDarkTheme" }),
+    layout() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+        case "sm":
+          return "VerticalLayout";
+      }
+      return "HorizontalLayout";
+    },
+  },
   watch: {
     darkTheme(val) {
       this.$vuetify.theme.dark = val;
