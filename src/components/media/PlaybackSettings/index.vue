@@ -8,7 +8,9 @@
         v-model="autoPlayNextVideo"
       ></v-switch>
       <v-switch label="Dark theme" v-model="darkTheme"></v-switch>
-      <v-btn @click="shuffleVideos">Shuffle the list again</v-btn>
+      <v-btn @click="shuffleList" :enabled="!shuffling"
+        >Shuffle the list again</v-btn
+      >
     </v-card-text>
   </v-card>
 </template>
@@ -17,6 +19,11 @@
 import { mapActions, mapState } from "vuex";
 export default {
   name: "PlaybackSettings",
+  data() {
+    return {
+      shuffling: false,
+    };
+  },
   computed: {
     ...mapState(["loop", "autoPlayNextVideo", "darkTheme"]),
     loop: {
@@ -44,7 +51,17 @@ export default {
       },
     },
   },
-  methods: { ...mapActions(["shuffleVideos"]) },
+  methods: {
+    ...mapActions(["shuffleVideos"]),
+    async shuffleList() {
+      if (!this.shuffling) {
+        this.shuffling = true;
+        this.shuffleVideos().then(() => {
+          this.shuffling = false;
+        });
+      }
+    },
+  },
 };
 </script>
 
