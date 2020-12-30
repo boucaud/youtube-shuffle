@@ -1,3 +1,5 @@
+import { shuffleArray } from "@helpers/shuffle";
+
 export default {
   state: {
     videoArray: [
@@ -75,10 +77,16 @@ export default {
     setVideoIds(state, ids) {
       state.videoIds = ids;
     },
+    setVideoArray(state, array) {
+      state.videoArray = array;
+    },
   },
   actions: {
-    shuffleVideos({ state }, payload) {
-      console.log(state, payload);
+    shuffleVideos({ state, commit }) {
+      const newArray = [...state.videoArray];
+      shuffleArray(newArray);
+      commit("setVideoArray", newArray);
+      commit("setVideoIndex", 0);
     },
     nextVideo({ state, rootGetters, commit }) {
       if (
