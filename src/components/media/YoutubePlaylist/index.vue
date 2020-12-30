@@ -5,7 +5,12 @@
       <v-list>
         <v-list-item-group mandatory v-model="activeVideoIndex">
           <v-list-item v-for="(id, i) in videoIdArray" :key="i">
-            <!-- <v-list-item-avatar></v-list-item-avatar> -->
+            <!-- TODO: scale this properly, use LOD -->
+            <v-list-item-avatar tile :min-height="100" :min-width="200"
+              ><v-img
+                :src="`https://img.youtube.com/vi/${id}/mqdefault.jpg`"
+                :min-height="100"
+            /></v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>{{ id }}</v-list-item-title>
               <v-list-item-subtitle>{{ id }}</v-list-item-subtitle>
