@@ -5,6 +5,7 @@
       <p>Loop after last video</p>
       <p>Automatically play next video</p>
       <p>Dark theme</p>
+      <p>Shuffle again</p>
     </v-card-text>
   </v-card>
 </template>

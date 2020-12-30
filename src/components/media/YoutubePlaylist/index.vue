@@ -25,23 +25,32 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   name: "YoutubePlaylist",
-  props: {
-    currentVideoIndex: Number,
-    videoArray: Array,
-  },
   data: () => ({
     activeVideoIndex: 0,
   }),
+  computed: {
+    ...mapGetters({
+      currentVideoIndex: "getCurrentVideoIndex",
+      videoArray: "getVideoArray",
+    }),
+  },
   watch: {
     currentVideoIndex(index) {
       console.log("change video");
       this.activeVideoIndex = index;
     },
     activeVideoIndex(index) {
-      this.$emit("videoChosen", index);
+      this.setVideoIndex(index);
     },
+  },
+  methods: {
+    ...mapMutations({
+      setVideoIndex: "setVideoIndex",
+    }),
   },
 };
 </script>

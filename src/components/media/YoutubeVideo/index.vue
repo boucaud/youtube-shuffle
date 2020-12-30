@@ -9,11 +9,17 @@
 
 <script>
 /* eslint-disable no-undef */
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "YoutubeVideo",
-  props: {
-    videoId: String,
+  data: function () {
+    return {
+      player: null,
+    };
+  },
+  computed: {
+    ...mapGetters({ videoId: "getCurrentVideoId" }),
   },
   watch: {
     videoId(id) {
@@ -28,8 +34,9 @@ export default {
     this.initializePlayer(this.videoId);
   },
   methods: {
+    ...mapMutations({ nextVideo: "nextVideo" }),
     handleVideoEnded() {
-      this.$emit("videoEnded");
+      this.nextVideo();
     },
     handlePlayerStateChange(event) {
       if (event.data === YT.PlayerState.ENDED) {
