@@ -12,16 +12,22 @@
     <v-main>
       <v-container fluid>
         <template v-if="urlIdArray && urlIdArray.length">
-          <YoutubeVideo
-            :videoId="videoArray[currentVideoIndex].id"
-            @videoEnded="nextVideo()"
-          />
-          <!-- TODO: can just pass the index directly... -->
-          <YoutubePlaylist
-            :currentVideoIndex="currentVideoIndex"
-            :videoArray="videoArray"
-            @videoChosen="setVideoIndex"
-          />
+          <v-layout>
+            <v-col>
+              <YoutubeVideo
+                :videoId="videoArray[currentVideoIndex].id"
+                @videoEnded="nextVideo()"
+              />
+            </v-col>
+            <v-col>
+              <!-- TODO: can just pass the index directly... -->
+              <YoutubePlaylist
+                :currentVideoIndex="currentVideoIndex"
+                :videoArray="videoArray"
+                @videoChosen="setVideoIndex"
+              />
+            </v-col>
+          </v-layout>
         </template>
         <URLInput v-else />
       </v-container>
@@ -80,6 +86,11 @@ export default {
         id: "Xw5AiRVqfqk",
         name: "Aphex Twin - Selected Ambient Works 85-92",
         channel: "Aphex Twin",
+      },
+      {
+        id: "WBUOrVHhJ8s",
+        name: "Billy Talent - I Beg To Differ - Official Lyric Video",
+        channel: "Billy Talent",
       },
     ],
     loop: true,
