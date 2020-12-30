@@ -1,5 +1,11 @@
+<style module>
+.container {
+  overflow-x: hidden;
+}
+</style>
+
 <template>
-  <div>
+  <div :class="$style.container">
     <slot name="player" />
     <v-divider />
     <slot name="controls" />
@@ -14,5 +20,3 @@ export default {
 };
 </script>
 
-<style>
-</style>
