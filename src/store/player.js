@@ -2,6 +2,7 @@ import { shuffleArray } from "@helpers/shuffle";
 
 export default {
   state: {
+    urlIdArray: null,
     videoArray: [
       {
         id: "KS2JZlhnN7c",
@@ -44,6 +45,9 @@ export default {
     currentVideoIndex: 0,
   },
   getters: {
+    getUrlIdArray(state) {
+      return state.urlIdArray;
+    },
     getVideoIds(state) {
       return state.videoIds;
     },
@@ -80,6 +84,9 @@ export default {
     setVideoArray(state, array) {
       state.videoArray = array;
     },
+    setUrlIdArray(state, array) {
+      state.urlIdArray = array;
+    },
   },
   actions: {
     shuffleVideos({ state, commit }) {
@@ -97,6 +104,18 @@ export default {
         state.currentVideoIndex++;
       } else if (rootGetters.getLoop) {
         commit("setVideoIndex", 0);
+      }
+    },
+    handleLocation({ commit }) {
+      const search = window.location.search;
+      if (search && search.length) {
+        const params = new URLSearchParams(search);
+        if (params.has("id")) {
+          const idList = params.getAll("id");
+          if (idList && idList.length) {
+            commit("setUrlIdArray", idList);
+          }
+        }
       }
     },
   },

@@ -39,7 +39,7 @@ import YoutubeVideo from "@components/media/YoutubeVideo";
 import HorizontalLayout from "@components/layouts/HorizontalLayout";
 import VerticalLayout from "@components/layouts/VerticalLayout";
 
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "YoutubeShuffle",
@@ -51,11 +51,8 @@ export default {
     YoutubePlaylist,
     YoutubeVideo,
   },
-  data: () => ({
-    urlIdArray: null, // TODO: store ?
-  }),
   computed: {
-    ...mapGetters({ darkTheme: "getDarkTheme" }),
+    ...mapGetters({ darkTheme: "getDarkTheme", urlIdArray: "getUrlIdArray" }),
     layout() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":
@@ -71,18 +68,11 @@ export default {
     },
   },
   mounted() {
-    const search = window.location.search;
-    if (search && search.length) {
-      const params = new URLSearchParams(search);
-      if (params.has("id")) {
-        const idList = params.getAll("id");
-        if (idList && idList.length) {
-          this.urlIdArray = idList;
-        }
-      }
-    }
-
+    this.handleLocation();
     this.$vuetify.theme.dark = this.darkTheme;
+  },
+  methods: {
+    ...mapActions(["handleLocation"]),
   },
 };
 </script>
