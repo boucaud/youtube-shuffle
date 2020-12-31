@@ -128,7 +128,7 @@ export default {
       // await send request
       setTimeout(() => {
         commit("setVideoArray", fixtureVideoArray);
-      }, 5000);
+      }, 1000);
     },
   },
 };
