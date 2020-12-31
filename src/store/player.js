@@ -23,12 +23,6 @@ const fixtureVideoArray = [
     channel: "100 gecs",
   },
   {
-    id: "qfn6xX0gZ_U",
-    name:
-      "90s Classic French Rap Mix (ft. Oxmo Puccino, La Rumeur, Lunatic, Shurik'n, Fabe..)",
-    channel: "Magical Mystery Mix",
-  },
-  {
     id: "Xw5AiRVqfqk",
     name: "Aphex Twin - Selected Ambient Works 85-92",
     channel: "Aphex Twin",
@@ -37,6 +31,28 @@ const fixtureVideoArray = [
     id: "WBUOrVHhJ8s",
     name: "Billy Talent - I Beg To Differ - Official Lyric Video",
     channel: "Billy Talent",
+  },
+  {
+    id: "f3XHxqrdPpo",
+    name: "Pop Carol - Winter 2020",
+    channel: "PC Music",
+  },
+  {
+    id: "9ebeA05ud6w",
+    name:
+      "Lucio Bukowski - Les faiseurs d'illusions sortent des lapins morts de leurs chapeaux (prod Haymaker)",
+    channel: "Lucio Bukowski",
+  },
+  {
+    id: "M_o2Hw0WstA",
+    name:
+      "Dylan Brady - I’ll Make You Miss Me All The Time (Official Music Video)",
+    channel: "Dylan Brady",
+  },
+  {
+    id: "1hrUaOrIQR4",
+    name: "Mild Orange - Foreplay [Full Album]",
+    channel: "Nice Guys",
   },
 ];
 
