@@ -3,6 +3,7 @@
     <v-card-title> Now Playing: </v-card-title>
     <v-card-text>
       <div ref="player" />
+      <v-progress-circular indeterminate v-if="!this.videoId || !this.player" />
     </v-card-text>
   </v-card>
 </template>
@@ -16,6 +17,7 @@ export default {
   data: function () {
     return {
       player: null,
+      initializingPlayer: false,
     };
   },
   computed: {
@@ -27,11 +29,15 @@ export default {
       if (this.player) {
         this.player.cueVideoById(id);
         this.player.playVideo(); // check that it worked ? if not, skip ?
+      } else if (!this.initializingPlayer) {
+        this.initializePlayer();
       }
     },
   },
   mounted() {
-    this.initializePlayer(this.videoId);
+    if (this.videoId) {
+      this.initializePlayer();
+    }
   },
   methods: {
     ...mapActions({ nextVideo: "nextVideo" }),
@@ -43,7 +49,11 @@ export default {
         this.handleVideoEnded();
       }
     },
-    initializePlayer(id) {
+    initializePlayer() {
+      if (this.initializingPlayer) {
+        return;
+      }
+      this.initializingPlayer = true;
       // Load the youtube iframe API script
       const tag = document.createElement("script");
       tag.src = "https://www.youtube.com/iframe_api";
@@ -53,7 +63,7 @@ export default {
       const container = this.$refs.player;
       window.onYouTubeIframeAPIReady = () => {
         this.player = new YT.Player(container, {
-          videoId: id,
+          videoId: this.videoId,
           events: {
             onReady: () => {
               this.player.playVideo();
@@ -61,6 +71,7 @@ export default {
             onStateChange: this.handlePlayerStateChange,
           },
         });
+        this.initializingPlayer = false;
       };
     },
   },

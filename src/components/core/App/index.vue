@@ -66,13 +66,16 @@ export default {
     darkTheme(val) {
       this.$vuetify.theme.dark = val;
     },
+    urlIdArray() {
+      this.requestVideoArray();
+    },
   },
   mounted() {
     this.handleLocation();
     this.$vuetify.theme.dark = this.darkTheme;
   },
   methods: {
-    ...mapActions(["handleLocation"]),
+    ...mapActions(["handleLocation", "requestVideoArray"]),
   },
 };
 </script>
