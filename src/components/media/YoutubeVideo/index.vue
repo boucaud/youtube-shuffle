@@ -53,24 +53,33 @@ export default {
       if (this.initializingPlayer) {
         return;
       }
+      const container = this.$refs.player;
+      const playerParams = {
+        videoId: this.videoId,
+        events: {
+          onReady: () => {
+            this.player.playVideo();
+          },
+          onStateChange: this.handlePlayerStateChange,
+        },
+      };
+
+      // YT API is already loaded
+      if (typeof YT !== typeof undefined && YT) {
+        this.player = new YT.Player(container, playerParams);
+        return;
+      }
+
       this.initializingPlayer = true;
+
       // Load the youtube iframe API script
       const tag = document.createElement("script");
       tag.src = "https://www.youtube.com/iframe_api";
       const firstScriptTag = document.getElementsByTagName("script")[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-      const container = this.$refs.player;
       window.onYouTubeIframeAPIReady = () => {
-        this.player = new YT.Player(container, {
-          videoId: this.videoId,
-          events: {
-            onReady: () => {
-              this.player.playVideo();
-            },
-            onStateChange: this.handlePlayerStateChange,
-          },
-        });
+        this.player = new YT.Player(container, playerParams);
         this.initializingPlayer = false;
       };
     },
