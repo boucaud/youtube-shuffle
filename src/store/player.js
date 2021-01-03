@@ -1,60 +1,5 @@
 import { shuffleArray } from "@helpers/shuffle";
-
-const fixtureVideoArray = [
-  {
-    id: "KS2JZlhnN7c",
-    name:
-      "Anton Serra , Robse , Eddy , Marius B , Kalan et Hakan chez Oster Lapwass N°16022018",
-    channel: "lapwass",
-  },
-  {
-    id: "53I6fcFXqxo",
-    name: "A. G. Cook - Silver (Official Video)",
-    channel: "PC Music",
-  },
-  {
-    id: "XYr5IC-mGi4",
-    name: "Billy Talent - Saint Veronika - Official Video",
-    channel: "Billy Talent",
-  },
-  {
-    id: "8Lyvv_bhzD0",
-    name: "100 gecs - sympathy 4 the grinch {VISUALIZER}",
-    channel: "100 gecs",
-  },
-  {
-    id: "Xw5AiRVqfqk",
-    name: "Aphex Twin - Selected Ambient Works 85-92",
-    channel: "Aphex Twin",
-  },
-  {
-    id: "WBUOrVHhJ8s",
-    name: "Billy Talent - I Beg To Differ - Official Lyric Video",
-    channel: "Billy Talent",
-  },
-  {
-    id: "f3XHxqrdPpo",
-    name: "Pop Carol - Winter 2020",
-    channel: "PC Music",
-  },
-  {
-    id: "9ebeA05ud6w",
-    name:
-      "Lucio Bukowski - Les faiseurs d'illusions sortent des lapins morts de leurs chapeaux (prod Haymaker)",
-    channel: "Lucio Bukowski",
-  },
-  {
-    id: "M_o2Hw0WstA",
-    name:
-      "Dylan Brady - I’ll Make You Miss Me All The Time (Official Music Video)",
-    channel: "Dylan Brady",
-  },
-  {
-    id: "1hrUaOrIQR4",
-    name: "Mild Orange - Foreplay [Full Album]",
-    channel: "Nice Guys",
-  },
-];
+import axios from "axios";
 
 export default {
   state: {
@@ -140,11 +85,26 @@ export default {
         }
       }
     },
-    async requestVideoArray({ commit }) {
+    async requestVideoArray({ commit, state }) {
       // await send request
-      setTimeout(() => {
-        commit("setVideoArray", fixtureVideoArray);
-      }, 1000);
+      // TODO: put in helper, parametrize
+      const apiRoot = `${window.origin}/api/items?playlistId=${state.urlIdArray[0]}`;
+      axios
+        .get(apiRoot)
+        .then((response) => {
+          if (response.status === 200) {
+            commit("setVideoArray", response.data);
+          } else {
+            console.error(
+              "cant fetch playlist items",
+              response.status,
+              response.statusText
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Request failed", error);
+        });
     },
   },
 };

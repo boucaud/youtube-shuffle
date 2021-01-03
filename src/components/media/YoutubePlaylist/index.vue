@@ -15,7 +15,7 @@
                 min-height="10vh"
             /></v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>{{ videoItem.name }}</v-list-item-title>
+              <v-list-item-title>{{ videoItem.title }}</v-list-item-title>
               <v-list-item-subtitle>{{
                 videoItem.channel
               }}</v-list-item-subtitle>
