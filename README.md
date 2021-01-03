@@ -6,7 +6,15 @@ Youtube's playlist randomizer breaks for very large lists.
 
 This is the front-end for a Youtube playlist shuffle service that works around the issue.
 
-Note: all values are placeholders, as the server implementation is a work in progress.
+Note: the configuration files in the config folder need to be completed with the path to the project, and a Google API Key.
+
+## Server dependencies
+```
+# Setup
+pip install cherrypy googleapiclient requests
+# Start the server
+python api.py
+```
 
 ## Project setup
 
