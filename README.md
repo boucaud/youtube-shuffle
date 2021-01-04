@@ -8,38 +8,9 @@ This is the front-end for a Youtube playlist shuffle service that works around t
 
 Note: the configuration files in the config folder need to be completed with the path to the project, and a Google API Key.
 
-## Server dependencies
-```
-# Setup
-pip install cherrypy googleapiclient requests
-# Start the server
-python api.py
-```
-
-## Project setup
+## Docker setup
 
 ```
-npm install
+git pull boucaud/youtube-shuffler:latest
+docker run --name youtube-shuffler -p 8080:$YOUR_PORT -e YOUTUBE_API_KEY=$YOUR_API_KEY -e YOUTUBE_SHUFFLER_ROOT='/root' youtube-shuffler
 ```
-
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
