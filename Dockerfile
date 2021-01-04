@@ -4,7 +4,8 @@ WORKDIR /usr/src/youtube-shuffler/
 
 # Setup npm project
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install -g @vue/cli
+RUN npm install
 
 # Bundle app source
 COPY . .
@@ -19,8 +20,6 @@ RUN mkdir .config
 
 COPY requirements.txt api.py ./
 COPY config ./config/
-
-RUN ls
 
 RUN pip install --no-cache -r requirements.txt
 
