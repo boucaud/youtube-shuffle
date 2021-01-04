@@ -85,7 +85,7 @@ export default {
         }
       }
     },
-    async requestVideoArray({ commit, state }) {
+    async requestVideoArray({ commit, dispatch, state }) {
       // await send request
       // TODO: put in helper, parametrize
       const apiRoot = `${window.origin}/api/items?playlistId=${state.urlIdArray[0]}`;
@@ -94,6 +94,7 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             commit("setVideoArray", response.data);
+            dispatch('shuffleVideos');
           } else {
             console.error(
               "cant fetch playlist items",
