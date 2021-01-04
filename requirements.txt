@@ -1,0 +1,3 @@
+cherrypy
+google-api-python-client
+requests
