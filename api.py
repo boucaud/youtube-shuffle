@@ -113,8 +113,6 @@ if __name__ == '__main__':
         print("'YOUTUBE_SHUFFLER_ROOT' environment variable is required but not set")
         exit
 
-    cherrypy.tree.mount(StaticWebsiteService(), '/', 'config/static.cfg')
-    cherrypy.quickstart(YoutubePlaylistService(), '/api')
 
     cherrypy.config.update({
         'log.screen': False,
@@ -123,5 +121,11 @@ if __name__ == '__main__':
         'tools.staticdir.root': project_root
 
     })
+
+    cherrypy.server.socket_host = '0.0.0.0' # TODO: env ?
+
+    cherrypy.tree.mount(StaticWebsiteService(), '/', 'config/static.cfg')
+    cherrypy.quickstart(YoutubePlaylistService(), '/api')
+
     cherrypy.engine.start()
     cherrypy.engine.block()
