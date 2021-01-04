@@ -10,8 +10,7 @@ import googleapiclient.errors
 
 import requests
 
-api_key = os.environ['YOUTUBE_API_KEY']
-project_root = os.environ['YOUTUBE_SHUFFLER_ROOT']
+client = None
 
 
 def isPlaylistItemAVideo(item):
@@ -50,12 +49,14 @@ def memoizeDaily(f):
     return helper
 
 
-# TODO: check success, api key existence
-# TODO: this should simply be done on startup
-@memoizeDaily
-def get_youtube_client(api_key):
+def get_youtube_client():
     api_service_name = "youtube"
     api_version = "v3"
+    api_key = os.environ['YOUTUBE_API_KEY']
+    if not api_key:
+        print("'YOUTUBE_API_KEY' environment variable is required but not set")
+        return None
+
     return googleapiclient.discovery.build(
         api_service_name, api_version, developerKey=api_key)
 
@@ -106,13 +107,15 @@ class YoutubePlaylistService(object):
 
 
 if __name__ == '__main__':
-    if not api_key:
-        print("'YOUTUBE_API_KEY' environment variable is required but not set")
-        exit
+    project_root = os.environ['YOUTUBE_SHUFFLER_ROOT']
     if not project_root:
         print("'YOUTUBE_SHUFFLER_ROOT' environment variable is required but not set")
         exit
 
+    client = get_youtube_client()
+    if not client:
+        print('Failed to initialize Google API client.')
+        exit
 
     cherrypy.config.update({
         'log.screen': False,
@@ -122,7 +125,7 @@ if __name__ == '__main__':
 
     })
 
-    cherrypy.server.socket_host = '0.0.0.0' # TODO: env ?
+    cherrypy.server.socket_host = '0.0.0.0'
 
     cherrypy.tree.mount(StaticWebsiteService(), '/', 'config/static.cfg')
     cherrypy.quickstart(YoutubePlaylistService(), '/api')
