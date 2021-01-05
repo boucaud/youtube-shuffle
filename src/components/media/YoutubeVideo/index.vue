@@ -18,6 +18,8 @@ export default {
     return {
       player: null,
       initializingPlayer: false,
+      doneBuffering: true,
+      videoCued: true,
     };
   },
   computed: {
@@ -26,6 +28,8 @@ export default {
   watch: {
     videoId(id) {
       // TODO: can we validate this?
+      this.doneBuffering = false;
+      this.videoCued = false;
       if (this.player) {
         this.player.cueVideoById(id);
         this.player.playVideo(); // check that it worked ? if not, skip ?
@@ -47,6 +51,15 @@ export default {
     handlePlayerStateChange(event) {
       if (event.data === YT.PlayerState.ENDED) {
         this.handleVideoEnded();
+      } else if (event.data === YT.PlayerState.BUFFERING) {
+        this.doneBuffering = true;
+      } else if (event.data === YT.PlayerState.CUED) {
+        this.videoCued = true;
+      } else if (event.data === YT.PlayerState.UNSTARTED) {
+        // If the video was loaded but unstarted, that means it is blocked
+        if (this.doneBuffering && this.videoCued) {
+          this.nextVideo();
+        }
       }
     },
     initializePlayer() {
