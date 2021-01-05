@@ -3,7 +3,9 @@
     <v-card-title>Input the playlists you want to play</v-card-title>
     <v-card-text>
       Each line should have one playlist URL, or playlist id
-      <v-textarea v-model="rawURLList" />
+      <v-textarea
+        v-model="rawURLList"
+      />
       <v-btn @click="onValidated">Shuffle all videos in these playlists</v-btn>
     </v-card-text>
   </v-card>
@@ -18,7 +20,7 @@ import {
 export default {
   name: "URLInput",
   data: () => ({
-    rawURLList: "",
+    rawURLList: "PLw9LHJQG82HlSvE1IXMzR_ykDvvgWHMii",
   }),
   methods: {
     onValidated() {
