@@ -3,6 +3,11 @@ export function parseInputListToPlaylistIdArray(listAsText) {
     return null;
   }
   const idArray = listAsText.split("\n").map((candidate) => {
+    const regex = /[&?]list=([^&]+)/i;
+    const found = candidate.match(regex);
+    if (found && found.length) {
+      return found[found.length - 1];
+    }
     return candidate;
     // TODO: validate id
     // TODO: check for existence ?? is it possible without youtube api ?
