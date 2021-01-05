@@ -88,24 +88,30 @@ export default {
     async requestVideoArray({ commit, dispatch, state }) {
       // await send request
       // TODO: put in helper, parametrize
-      const apiRoot = `${window.origin}/api/items?playlistId=${state.urlIdArray[0]}`;
-      axios
-        .get(apiRoot)
-        .then((response) => {
-          if (response.status === 200) {
-            commit("setVideoArray", response.data);
-            dispatch('shuffleVideos');
-          } else {
-            console.error(
-              "cant fetch playlist items",
-              response.status,
-              response.statusText
-            );
-          }
-        })
-        .catch((error) => {
-          console.error("Request failed", error);
-        });
+      const results = [];
+      const promises = state.urlIdArray.map((playlistId) => {
+        const apiRoot = `${window.origin}/api/items?playlistId=${playlistId}`;
+        return axios
+          .get(apiRoot)
+          .then((response) => {
+            if (response.status === 200) {
+              results.push(...response.data);
+            } else {
+              console.error(
+                "cant fetch playlist items",
+                response.status,
+                response.statusText
+              );
+            }
+          })
+          .catch((error) => {
+            console.error("Request failed", error);
+          });
+      });
+
+      await Promise.all(promises);
+      commit("setVideoArray", results);
+      dispatch("shuffleVideos");
     },
   },
 };
