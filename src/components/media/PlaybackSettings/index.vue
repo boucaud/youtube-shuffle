@@ -2,6 +2,7 @@
   <v-card>
     <v-card-title> Controls </v-card-title>
     <v-card-text>
+      <v-btn @click="nextVideo()">Next >></v-btn>
       <v-switch label="Loop after last video" v-model="loop"></v-switch>
       <v-switch
         label="Automatically play next video"
@@ -52,7 +53,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["shuffleVideos"]),
+    ...mapActions(["shuffleVideos", "nextVideo"]),
     async shuffleList() {
       if (!this.shuffling) {
         this.shuffling = true;
