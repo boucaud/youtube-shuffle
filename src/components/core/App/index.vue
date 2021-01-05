@@ -20,7 +20,7 @@
 
     <!-- Provides the application the proper gutter -->
     <v-main>
-      <component v-if="urlIdArray && urlIdArray.length" :is="layout">
+      <ResponsiveLayout v-if="urlIdArray && urlIdArray.length">
         <template v-slot:player>
           <YoutubeVideo />
         </template>
@@ -30,7 +30,7 @@
         <template v-slot:controls>
           <PlaybackSettings />
         </template>
-      </component>
+      </ResponsiveLayout>
       <URLInput v-else />
     </v-main>
 
@@ -46,36 +46,26 @@ import URLInput from "@components/selection/URLInput";
 import YoutubePlaylist from "@components/media/YoutubePlaylist";
 import YoutubeVideo from "@components/media/YoutubeVideo";
 
-import HorizontalLayout from "@components/layouts/HorizontalLayout";
-import VerticalLayout from "@components/layouts/VerticalLayout";
+import ResponsiveLayout from "@components/layouts/ResponsiveLayout";
 
 import { mapActions, mapGetters } from "vuex";
 
-  import { mdiSourceBranch } from '@mdi/js'
+import { mdiSourceBranch } from "@mdi/js";
 
 export default {
   name: "YoutubeShuffle",
   components: {
-    HorizontalLayout,
-    VerticalLayout,
+    ResponsiveLayout,
     PlaybackSettings,
     URLInput,
     YoutubePlaylist,
     YoutubeVideo,
   },
   data: () => ({
-    githubIcon: mdiSourceBranch
+    githubIcon: mdiSourceBranch,
   }),
   computed: {
     ...mapGetters({ darkTheme: "getDarkTheme", urlIdArray: "getUrlIdArray" }),
-    layout() {
-      switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-        case "sm":
-          return "VerticalLayout";
-      }
-      return "HorizontalLayout";
-    },
   },
   watch: {
     darkTheme(val) {

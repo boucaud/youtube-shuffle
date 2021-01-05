@@ -3,7 +3,7 @@
     <v-card-title> Current Mix </v-card-title>
     <v-card-text>
       <v-list
-        :style="{ overflowY: 'auto', maxHeight: '77vh' }"
+        :style="{ overflowY: 'auto', maxHeight: '80vh' }"
         v-if="videoArray"
       >
         <v-list-item-group mandatory v-model="activeVideoIndex">

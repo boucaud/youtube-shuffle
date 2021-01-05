@@ -1,11 +1,12 @@
 <template>
-  <v-container fluid>
+  <v-container fluid :class="$style.container">
     <v-row>
-      <v-col>
+      <v-col lg="6" md="8" sm="12">
         <slot name="player" />
         <slot name="controls" />
       </v-col>
-      <v-col>
+      <v-spacer />
+      <v-col lg="6" md="4" sm="12">
         <slot name="playlist" />
       </v-col>
     </v-row>
@@ -14,9 +15,12 @@
 
 <script>
 export default {
-  name: "HorizontalLayout",
+  name: "ResponsiveLayout",
 };
 </script>
 
-<style>
+<style module>
+.container {
+  overflow-x: hidden;
+}
 </style>
