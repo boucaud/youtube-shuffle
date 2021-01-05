@@ -15,7 +15,7 @@ This is the front-end for a Youtube playlist shuffle service that works around t
 ## Docker setup
 
 ```
-git pull boucaud/youtube-shuffle:latest
+docker pull boucaud/youtube-shuffle:latest
 docker run --name youtube-shuffle -p 8080:$YOUR_PORT -e YOUTUBE_API_KEY=$YOUR_API_KEY -e YOUTUBE_SHUFFLER_ROOT='/root' youtube-shuffle
 ```
 
