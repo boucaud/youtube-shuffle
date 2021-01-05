@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title> Now Playing: </v-card-title>
+    <v-card-title>Now Playing</v-card-title>
     <v-card-text>
       <div ref="player" />
       <v-progress-circular indeterminate v-if="!this.videoId || !this.player" />
