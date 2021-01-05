@@ -8,6 +8,8 @@ This is the front-end for a Youtube playlist shuffle service that works around t
 
 Note: the configuration files in the config folder need to be completed with the path to the project, and a Google API Key.
 
+[Demo link](https://youtube-shuffle.boucaud.dev/)
+
 ## Docker setup
 
 ```
