@@ -12,8 +12,9 @@
         icon
         href="https://github.com/boucaud/youtube-shuffle"
         target="_blank"
+        rel="noopener"
       >
-        <v-icon>{{ "mdi-source-branch" }}</v-icon>
+        <v-icon>{{ githubIcon }}</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -50,6 +51,8 @@ import VerticalLayout from "@components/layouts/VerticalLayout";
 
 import { mapActions, mapGetters } from "vuex";
 
+  import { mdiSourceBranch } from '@mdi/js'
+
 export default {
   name: "YoutubeShuffle",
   components: {
@@ -60,6 +63,9 @@ export default {
     YoutubePlaylist,
     YoutubeVideo,
   },
+  data: () => ({
+    githubIcon: mdiSourceBranch
+  }),
   computed: {
     ...mapGetters({ darkTheme: "getDarkTheme", urlIdArray: "getUrlIdArray" }),
     layout() {
