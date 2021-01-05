@@ -17,13 +17,14 @@ This is the front-end for a Youtube playlist shuffle service that works around t
 ```
 docker pull boucaud/youtube-shuffle:latest
 docker run \
+  -d \
   --name youtube-shuffle \
-  -p 8080:$YOUR_PORT \
+  -p $YOUR_PORT:8080 \
   -e YOUTUBE_API_KEY=$YOUR_API_KEY \
   -e YOUTUBE_SHUFFLE_ROOT='/root' \
   -e YOUTUBE_SHUFFLE_LOG_DIR='/root/log' \
-  -v $YOUR_LOG_DIR:'/root/log' # optional
-  youtube-shuffle
+  -v $YOUR_LOG_DIR:'/root/log' \
+  boucaud/youtube-shuffle
 ```
 
 ## Standalone setup
