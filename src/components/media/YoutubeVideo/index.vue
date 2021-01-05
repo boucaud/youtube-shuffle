@@ -75,6 +75,7 @@ export default {
           },
           onStateChange: this.handlePlayerStateChange,
         },
+        width: "100%",
       };
 
       // YT API is already loaded
