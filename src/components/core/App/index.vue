@@ -5,7 +5,16 @@
 
     <v-app-bar app>
       <!-- -->
-      Youtube shuffler
+      <v-app-bar-title>Youtube-shuffle</v-app-bar-title>
+      <v-spacer />
+      <span>shuffle and mix large Youtube playlists</span>
+      <v-btn
+        icon
+        href="https://github.com/boucaud/youtube-shuffle"
+        target="_blank"
+      >
+        <v-icon>{{ "mdi-source-branch" }}</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <!-- Provides the application the proper gutter -->
