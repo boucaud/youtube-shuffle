@@ -1,6 +1,6 @@
 FROM node:latest AS build
 
-WORKDIR /usr/src/youtube-shuffler/
+WORKDIR /usr/src/youtube-shuffle/
 
 # Setup npm project
 COPY package*.json ./
@@ -14,7 +14,7 @@ RUN npm run build
 FROM python:3
 WORKDIR /root/
 
-COPY --from=build /usr/src/youtube-shuffler/dist ./dist/
+COPY --from=build /usr/src/youtube-shuffle/dist ./dist/
 
 RUN mkdir .config
 

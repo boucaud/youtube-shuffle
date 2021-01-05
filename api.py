@@ -52,7 +52,7 @@ def memoizeDaily(f):
 def get_youtube_client():
     api_service_name = "youtube"
     api_version = "v3"
-    api_key = os.environ['YOUTUBE_API_KEY']
+    api_key = os.environ.get('YOUTUBE_API_KEY', None)
     if not api_key:
         print("'YOUTUBE_API_KEY' environment variable is required but not set")
         return None
@@ -107,9 +107,9 @@ class YoutubePlaylistService(object):
 
 
 if __name__ == '__main__':
-    project_root = os.environ['YOUTUBE_SHUFFLER_ROOT']
+    project_root = os.environ.get('YOUTUBE_SHUFFLE_ROOT', None)
     if not project_root:
-        print("'YOUTUBE_SHUFFLER_ROOT' environment variable is required but not set")
+        print("'YOUTUBE_SHUFFLE_ROOT' environment variable is required but not set")
         exit
 
     client = get_youtube_client()
@@ -117,10 +117,11 @@ if __name__ == '__main__':
         print('Failed to initialize Google API client.')
         exit
 
+    log_dir = os.environ.get('YOUTUBE_SHUFFLE_LOG_DIR', '.')
     cherrypy.config.update({
         'log.screen': False,
-        'log.access_file': 'access.log',
-        'log.error_file': 'error.log',
+        'log.access_file': os.path.join(log_dir, 'access.log'),
+        'log.error_file': os.path.join(log_dir, 'error.log'),
         'tools.staticdir.root': project_root
 
     })
