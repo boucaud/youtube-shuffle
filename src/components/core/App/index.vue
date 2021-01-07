@@ -5,7 +5,16 @@
 
     <v-app-bar app>
       <!-- -->
-      <v-app-bar-title>Youtube-shuffle</v-app-bar-title>
+      <v-app-bar-title
+        ><a
+          href="/"
+          :style="{
+            color: 'inherit',
+            textDecoration: 'inherit',
+          }"
+          >Youtube-shuffle</a
+        ></v-app-bar-title
+      >
       <v-spacer />
       <span>shuffle and mix large Youtube playlists</span>
       <v-btn
@@ -63,6 +72,7 @@ export default {
   },
   data: () => ({
     githubIcon: mdiSourceBranch,
+    origin: window.origin,
   }),
   computed: {
     ...mapGetters({ darkTheme: "getDarkTheme", urlIdArray: "getUrlIdArray" }),
