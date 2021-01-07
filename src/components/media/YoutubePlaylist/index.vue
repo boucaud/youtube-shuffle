@@ -9,7 +9,7 @@
         <v-list-item-group mandatory v-model="activeVideoIndex">
           <v-list-item v-for="(videoItem, i) in videoArray" :key="i">
             <!-- TODO: scale this properly, use LOD -->
-            <v-list-item-avatar horizontal
+            <v-list-item-avatar
               ><v-img
                 :aspect-ratio="16 / 9"
                 :lazy-src="`https://img.youtube.com/vi/${videoItem.id}/sqdefault.jpg`"
