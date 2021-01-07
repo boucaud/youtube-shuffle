@@ -19,7 +19,7 @@
               ><v-img
                 :aspect-ratio="16 / 9"
                 :lazy-src="require('./youtube.png')"
-                :src="`https://img.youtube.com/vi/${videoItem.id}/sddefault.jpg`"
+                :src="`https://img.youtube.com/vi/${videoItem.id}/mqdefault.jpg`"
             /></v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>{{ videoItem.title }}</v-list-item-title>
