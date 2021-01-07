@@ -1,7 +1,7 @@
 <template>
   <v-card :style="{ height: '100%' }">
     <v-card-title> Current Mix </v-card-title>
-    <v-card-text :style="{ height: '100%', maxHeight: '80vh' }">
+    <v-card-text :style="{ height: '100%', maxHeight: '85vh' }">
       <v-list
         :style="{ overflowY: 'auto', maxHeight: '100%' }"
         v-if="videoArray"
