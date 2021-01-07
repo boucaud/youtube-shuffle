@@ -19,12 +19,16 @@
               ><v-img
                 :aspect-ratio="16 / 9"
                 :lazy-src="require('./youtube.png')"
-                :src="`https://img.youtube.com/vi/${videoArray[i].id}/mqdefault.jpg`"
+                :src="`https://img.youtube.com/vi/${
+                  videoArray[i - 1].id
+                }/mqdefault.jpg`"
             /></v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>{{ videoArray[i].title }}</v-list-item-title>
+              <v-list-item-title>{{
+                videoArray[i - 1].title
+              }}</v-list-item-title>
               <v-list-item-subtitle>{{
-                videoArray[i].channel
+                videoArray[i - 1].channel
               }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
