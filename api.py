@@ -105,6 +105,10 @@ class YoutubePlaylistService(object):
     def items(self, playlistId):
         return json.dumps(get_playlist_items(playlistId))
 
+    @cherrypy.expose
+    def info(self, playlistId):
+        return json.dumps(get_playlist_information(playlistId))
+
 
 if __name__ == '__main__':
     project_root = os.environ.get('YOUTUBE_SHUFFLE_ROOT', None)
