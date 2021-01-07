@@ -7,13 +7,17 @@
         v-if="videoArray"
       >
         <v-list-item-group mandatory v-model="activeVideoIndex">
-          <v-list-item v-for="(videoItem, i) in videoArray" :key="i">
+          <v-list-item
+            v-for="(videoItem, i) in videoArray"
+            :key="i"
+            :style="{ minHeight: '7vh' }"
+          >
             <!-- TODO: scale this properly, use LOD -->
             <v-list-item-avatar
               ><v-img
                 :aspect-ratio="16 / 9"
-                :lazy-src="`https://img.youtube.com/vi/${videoItem.id}/sqdefault.jpg`"
-                :src="`https://img.youtube.com/vi/${videoItem.id}/hqdefault.jpg`"
+                :lazy-src="require('./youtube.png')"
+                :src="`https://img.youtube.com/vi/${videoItem.id}/sddefault.jpg`"
             /></v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>{{ videoItem.title }}</v-list-item-title>
