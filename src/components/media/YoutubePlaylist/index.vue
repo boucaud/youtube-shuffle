@@ -9,10 +9,11 @@
         <v-list-item-group mandatory v-model="activeVideoIndex">
           <v-list-item v-for="(videoItem, i) in videoArray" :key="i">
             <!-- TODO: scale this properly, use LOD -->
-            <v-list-item-avatar tile min-height="10vh"
+            <v-list-item-avatar horizontal
               ><v-img
-                :src="`https://img.youtube.com/vi/${videoItem.id}/mqdefault.jpg`"
-                min-height="10vh"
+                :aspect-ratio="16 / 9"
+                :lazy-src="`https://img.youtube.com/vi/${videoItem.id}/sqdefault.jpg`"
+                :src="`https://img.youtube.com/vi/${videoItem.id}/hqdefault.jpg`"
             /></v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>{{ videoItem.title }}</v-list-item-title>
