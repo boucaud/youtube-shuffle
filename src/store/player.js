@@ -56,10 +56,10 @@ export default {
     },
   },
   actions: {
-    shuffleVideos({ state, commit }) {
+    async shuffleVideos({ state, commit }) {
       const newArray = [...state.videoArray];
       shuffleArray(newArray);
-      commit("setVideoArray", newArray);
+      commit("setVideoArray", Object.freeze(newArray));
       commit("setVideoIndex", 0);
     },
     nextVideo({ state, rootGetters, commit }) {
@@ -85,7 +85,7 @@ export default {
         }
       }
     },
-    async requestVideoArray({ commit, dispatch, state }) {
+    async requestVideoArray({ commit, state }) {
       // await send request
       // TODO: put in helper, parametrize
       const results = [];
@@ -110,8 +110,8 @@ export default {
       });
 
       await Promise.all(promises);
-      commit("setVideoArray", results);
-      dispatch("shuffleVideos");
+      shuffleArray(results);
+      commit("setVideoArray", Object.freeze(results));
     },
   },
 };
