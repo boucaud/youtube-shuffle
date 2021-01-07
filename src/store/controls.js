@@ -2,7 +2,7 @@ export default {
   state: {
     loop: true,
     autoPlayNextVideo: true,
-    darkTheme: true,
+    darkTheme: false,
   },
   getters: {
     getLoop(state) {
