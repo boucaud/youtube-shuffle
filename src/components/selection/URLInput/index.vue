@@ -22,8 +22,11 @@ import {
 export default {
   name: "URLInput",
   data: () => ({
-    rawURLList:
-      "PL6NdkXsPL07KiewBDpJC1dFvxEubnNOp1\nPLuDoiEqVUgejiZy0AOEEOLY2YFFXncwEA",
+    rawURLList: `PL6NdkXsPL07KiewBDpJC1dFvxEubnNOp1
+PLuDoiEqVUgejiZy0AOEEOLY2YFFXncwEA
+PL06diOotXAJLhZjxE_cbYWbsXmdsvA_22
+PLEdxGwFA_9KU8rQ-AR1WVaXBojpP-giIw
+RD0G1xx6bJOkY`,
   }),
   methods: {
     onValidated() {
