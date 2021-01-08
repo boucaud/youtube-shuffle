@@ -33,6 +33,9 @@
         <template v-slot:player>
           <YoutubeVideo />
         </template>
+        <template v-slot:playlist-information>
+          <PlaylistInformation />
+        </template>
         <template v-slot:playlist>
           <YoutubePlaylist />
         </template>
@@ -54,6 +57,7 @@ import PlaybackSettings from "@components/media/PlaybackSettings";
 import URLInput from "@components/selection/URLInput";
 import YoutubePlaylist from "@components/media/YoutubePlaylist";
 import YoutubeVideo from "@components/media/YoutubeVideo";
+import PlaylistInformation from "@components/media/PlaylistInformation";
 
 import ResponsiveLayout from "@components/layouts/ResponsiveLayout";
 
@@ -66,6 +70,7 @@ export default {
   components: {
     ResponsiveLayout,
     PlaybackSettings,
+    PlaylistInformation,
     URLInput,
     YoutubePlaylist,
     YoutubeVideo,

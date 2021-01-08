@@ -2,7 +2,12 @@
   <v-container fluid :class="$style.container">
     <v-row>
       <v-col lg="6" md="8" width="100%">
-        <v-container flex :style="{padding: 0}">
+        <v-container flex :style="{ padding: 0 }">
+          <v-row dense>
+            <v-col>
+              <slot name="playlist-information" my-8 />
+            </v-col>
+          </v-row>
           <v-row dense>
             <v-col>
               <slot name="player" />

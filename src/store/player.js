@@ -4,6 +4,7 @@ import axios from "axios";
 export default {
   state: {
     urlIdArray: null,
+    playlistInformation: {},
     videoArray: null,
     currentVideoIndex: 0,
   },
@@ -35,6 +36,9 @@ export default {
       }
       return null;
     },
+    getPlaylistInformation(state) {
+      return state.playlistInformation;
+    },
   },
   mutations: {
     incrementCurrentVideoIndex(state) {
@@ -54,8 +58,26 @@ export default {
     setUrlIdArray(state, array) {
       state.urlIdArray = array;
     },
+    setPlaylistInformation(state, { id, information }) {
+      state.playlistInformation = Object.assign({}, state.playlistInformation, {
+        [id]: information,
+      });
+    },
   },
   actions: {
+    async fetchPlaylistInformation({ state, commit }) {
+      state.urlIdArray.forEach((id) => {
+        const apiRoot = `${window.origin}/api/info?playlistId=${id}`;
+        axios.get(apiRoot).then((response) => {
+          if (response.status === 200) {
+            commit("setPlaylistInformation", {
+              id,
+              information: response.data,
+            });
+          }
+        });
+      });
+    },
     async shuffleVideos({ state, commit }) {
       const newArray = [...state.videoArray];
       shuffleArray(newArray);
