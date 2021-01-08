@@ -2,7 +2,9 @@
   <v-card>
     <v-card-title>Now Playing</v-card-title>
     <v-card-text>
-      <div ref="player" />
+      <div class="video-container">
+        <div ref="player" />
+      </div>
       <v-progress-circular indeterminate v-if="!this.videoId || !this.player" />
     </v-card-text>
   </v-card>
@@ -76,6 +78,7 @@ export default {
           onStateChange: this.handlePlayerStateChange,
         },
         width: "100%",
+        height: "100%",
         origin: window.origin,
       };
 
@@ -103,4 +106,20 @@ export default {
 </script>
 
 <style>
+.video-container {
+  float: none;
+  clear: both;
+  width: 100%;
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  height: 0;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 </style>
