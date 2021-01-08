@@ -2,16 +2,30 @@
   <v-card>
     <v-card-title> Controls </v-card-title>
     <v-card-text>
-      <v-btn @click="nextVideo()">Next >></v-btn>
-      <v-switch label="Loop after last video" v-model="loop"></v-switch>
-      <v-switch
-        label="Automatically play next video"
-        v-model="autoPlayNextVideo"
-      ></v-switch>
-      <v-switch label="Dark theme" v-model="darkTheme"></v-switch>
-      <v-btn @click="shuffleList" :enabled="!shuffling"
-        >Shuffle the list again</v-btn
-      >
+      <v-row>
+        <v-col>
+          <v-btn @click="nextVideo()">Next >></v-btn>
+        </v-col>
+        <v-col>
+          <v-btn @click="shuffleList" :enabled="!shuffling"
+            >Shuffle the list again</v-btn
+          >
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-switch label="Loop after last video" v-model="loop"></v-switch>
+        </v-col>
+        <v-col>
+          <v-switch
+            label="Automatically play next video"
+            v-model="autoPlayNextVideo"
+          ></v-switch>
+        </v-col>
+        <v-col>
+          <v-switch label="Dark theme" v-model="darkTheme"></v-switch>
+        </v-col>
+      </v-row>
     </v-card-text>
   </v-card>
 </template>
