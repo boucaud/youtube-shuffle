@@ -13,14 +13,14 @@ export function parseInputListToPlaylistIdArray(listAsText) {
     // TODO: check for existence ?? is it possible without youtube api ?
     // TODO: also parse url
   });
-  return idArray;
+  return idArray.filter((id) => id && id.length > 3);
 }
 
 export function buildURLFromIdArray(idArray) {
   if (!idArray || idArray.length === 0) {
-  return;
+    return;
   }
-  const searchParams = new URLSearchParams()
+  const searchParams = new URLSearchParams();
   idArray.forEach((id) => searchParams.append("id", id));
 
   const url = new URL(`?${searchParams.toString()}`, window.origin);
