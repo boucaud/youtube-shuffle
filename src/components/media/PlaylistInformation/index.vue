@@ -11,10 +11,10 @@
           }"
         >
           <v-card elevation="4" class="ma-1">
-            <v-card-title>
+            <v-card-title class="py-0">
               {{ playlistInformation[id].title }}
             </v-card-title>
-            <v-card-text>
+            <v-card-text class="py-1">
               {{ playlistInformation[id].channel }}
             </v-card-text>
           </v-card>
