@@ -27,7 +27,7 @@ export default {
 PLuDoiEqVUgejiZy0AOEEOLY2YFFXncwEA
 PL06diOotXAJLhZjxE_cbYWbsXmdsvA_22
 PLEdxGwFA_9KU8rQ-AR1WVaXBojpP-giIw
-RD0G1xx6bJOkY`,
+`,
   }),
   methods: {
     onValidated() {
