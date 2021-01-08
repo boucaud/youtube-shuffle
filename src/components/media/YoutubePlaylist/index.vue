@@ -76,6 +76,9 @@ export default {
   },
   watch: {
     currentVideoIndex(index) {
+      if (index === this.numberOfItemsToDisplay) {
+        this.maxItems += this.increment;
+      }
       this.activeVideoIndex = index;
     },
     activeVideoIndex(index) {
