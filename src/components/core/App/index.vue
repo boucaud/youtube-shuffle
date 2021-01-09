@@ -63,7 +63,7 @@ import ResponsiveLayout from "@components/layouts/ResponsiveLayout";
 
 import { mapActions, mapGetters } from "vuex";
 
-import { mdiSourceBranch } from "@mdi/js";
+import { mdiGithub } from "@mdi/js";
 
 export default {
   name: "YoutubeShuffle",
@@ -76,7 +76,7 @@ export default {
     YoutubeVideo,
   },
   data: () => ({
-    githubIcon: mdiSourceBranch,
+    githubIcon: mdiGithub,
     origin: window.origin,
   }),
   computed: {
