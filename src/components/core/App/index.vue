@@ -5,7 +5,7 @@
 
     <v-app-bar app>
       <!-- -->
-      <v-app-bar-title
+      <v-toolbar-title
         ><a
           href="/"
           :style="{
@@ -13,7 +13,7 @@
             textDecoration: 'inherit',
           }"
           >Youtube-shuffle</a
-        ></v-app-bar-title
+        ></v-toolbar-title
       >
       <v-spacer />
       <span>shuffle and mix large Youtube playlists</span>
