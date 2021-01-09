@@ -42,7 +42,7 @@ export default {
   },
   mutations: {
     incrementCurrentVideoIndex(state) {
-      ++state.incrementCurrentVideoIndex;
+      ++state.currentVideoIndex;
     },
     setVideoIndex(state, index) {
       if (index >= 0 && index < state.videoArray.length) {
@@ -90,7 +90,6 @@ export default {
         rootGetters.getAutoPlayNextVideo
       ) {
         commit("incrementCurrentVideoIndex");
-        state.currentVideoIndex++;
       } else if (rootGetters.getLoop) {
         commit("setVideoIndex", 0);
       }

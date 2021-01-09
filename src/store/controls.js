@@ -1,12 +1,16 @@
 export default {
   state: {
     loop: true,
+    loopVideo: false,
     autoPlayNextVideo: true,
     darkTheme: false,
   },
   getters: {
     getLoop(state) {
       return state.loop;
+    },
+    getLoopVideo(state) {
+      return state.loopVideo;
     },
     getAutoPlayNextVideo(state) {
       return state.autoPlayNextVideo;
@@ -18,6 +22,9 @@ export default {
   mutations: {
     setLoop(state, value) {
       state.loop = value;
+    },
+    setLoopVideo(state, value) {
+      state.loopVideo = value;
     },
     setAutoPlayNextVideo(state, value) {
       state.autoPlayNextVideo = value;
