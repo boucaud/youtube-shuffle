@@ -4,7 +4,7 @@
     <v-card-text>
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn icon @click="nextVideo()" v-bind="attrs" v-on="on"
+          <v-btn large icon @click="nextVideo()" v-bind="attrs" v-on="on"
             ><v-icon>{{ nextIcon }}</v-icon></v-btn
           >
         </template>
@@ -14,6 +14,7 @@
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
+            large
             icon
             @click="shuffleList"
             :enabled="!shuffling"
@@ -31,6 +32,7 @@
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
+            large
             icon
             v-bind="attrs"
             v-on="on"
@@ -44,7 +46,7 @@
       </v-tooltip>
       <!-- <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn
+          <v-btn large
             icon
             v-bind="attrs"
             v-on="on"
@@ -58,6 +60,7 @@
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
+            large
             icon
             v-bind="attrs"
             v-on="on"
@@ -71,6 +74,7 @@
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
+            large
             icon
             v-bind="attrs"
             v-on="on"
