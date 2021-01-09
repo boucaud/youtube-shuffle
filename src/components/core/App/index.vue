@@ -97,6 +97,24 @@ export default {
   methods: {
     ...mapActions(["handleLocation", "requestVideoArray"]),
   },
+  metaInfo: () => {
+    if (
+      process.env.NODE_ENV === "production" &&
+      window.location.host === "youtube-shuffle.boucaud.dev"
+    ) {
+      return {
+        script: [
+          {
+            src: "https://plausible.boucaud.dev/js/plausible.js",
+            async: true,
+            defer: true,
+            dataDomain: window.location.host,
+          },
+        ],
+      };
+    }
+    return null;
+  },
 };
 </script>
 
