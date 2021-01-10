@@ -3,8 +3,8 @@
     <v-card>
       <v-card-title>Input the playlists you want to play</v-card-title>
       <v-card-text>
-        Each line should have one playlist URL, or playlist id.
-        Note: The playlists need to be public and listed.
+        Each line should have one playlist URL, or playlist id. Note: The
+        playlists need to be public and listed.
         <v-textarea v-model="rawURLList" />
         <v-btn @click="onValidated"
           >Shuffle all videos in these playlists</v-btn
@@ -26,7 +26,6 @@ export default {
     rawURLList: `PL6NdkXsPL07KiewBDpJC1dFvxEubnNOp1
 PLuDoiEqVUgejiZy0AOEEOLY2YFFXncwEA
 PL06diOotXAJLhZjxE_cbYWbsXmdsvA_22
-PLEdxGwFA_9KU8rQ-AR1WVaXBojpP-giIw
 `,
   }),
   methods: {
