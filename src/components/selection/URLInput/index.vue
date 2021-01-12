@@ -3,6 +3,7 @@
     <v-card>
       <v-card-title>Input the playlists you want to play</v-card-title>
       <v-card-text>
+        The youtube playlist randomizer is not working properly. This website aims to provide a working youtube playlist randomizer alternative.
         Each line should have one playlist URL, or playlist id. Note: The
         playlists need to be public and listed.
         <v-textarea v-model="rawURLList" />
