@@ -80,6 +80,9 @@ export default {
         width: "100%",
         height: "100%",
         origin: window.origin,
+        playerVars: {
+          origin: window.location.origin,
+        },
       };
 
       // YT API is already loaded
