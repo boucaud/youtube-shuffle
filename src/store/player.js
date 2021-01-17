@@ -1,4 +1,9 @@
 import { shuffleArray } from "@helpers/shuffle";
+import {
+  parseInputListToPlaylistIdArray,
+  buildURLFromIdArray,
+} from "@helpers/inputList";
+
 import axios from "axios";
 
 export default {
@@ -65,6 +70,18 @@ export default {
     },
   },
   actions: {
+    handleNewURLList({ dispatch }, { rawURLList }) {
+      const list = parseInputListToPlaylistIdArray(rawURLList);
+      if (!list || list.length === 0) {
+        // TODO: show error message
+        return;
+      }
+      dispatch("redirectToIdArray", { idArray: list });
+    },
+    redirectToIdArray(payload, {idArray}) {
+      const url = buildURLFromIdArray(idArray); // TODO: check max size
+      window.location.href = url;
+    },
     async fetchPlaylistInformation({ state, commit }) {
       state.urlIdArray.forEach((id) => {
         const apiRoot = `${window.origin}/api/info?playlistId=${id}`;
