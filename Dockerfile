@@ -4,12 +4,12 @@ WORKDIR /usr/src/youtube-shuffle/
 
 # Setup npm project
 COPY package*.json ./
-RUN npm install -g @vue/cli
-RUN npm install
+RUN yarn global add @vue/cli
+RUN yarn install
 
 # Bundle app source
 COPY . .
-RUN npm run build
+RUN yarn run build
 
 FROM python:3
 WORKDIR /root/

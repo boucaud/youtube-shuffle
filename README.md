@@ -28,8 +28,8 @@ docker run \
 
 ## Standalone setup
 ```
-npm install
-npm run build
+yarn install
+yarn run build
 pip install -r requirements.txt
 python ./api.py
 ```
@@ -37,5 +37,5 @@ python ./api.py
 ## Development server
 ```
 # Note this expects the api to be accessible at localhost:8080. If not, change the proxy url in vue.config.js
-npm run serve
+yarn run serve
 ```
