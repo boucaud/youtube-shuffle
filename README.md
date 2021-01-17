@@ -1,16 +1,15 @@
 # youtube-shuffle
 
-### Work in progress
+### [Demo link](https://youtube-shuffle.boucaud.dev/)
 
 Youtube's playlist randomizer breaks for very large lists.
 
-This is the front-end for a Youtube playlist shuffle service that works around the issue.
+This is a basic implementation for a Youtube playlist shuffle service that works around the issue.
 
 * If you wish to run this, you need a youtube API key, specified in the YOUTUBE_API_KEY environment variable.
 
 * If running out of docker, you need to specify the project root in the YOUTUBE_SHUFFLE_ROOT environment variable.
 
-[Demo link](https://youtube-shuffle.boucaud.dev/)
 
 ## Docker setup
 
