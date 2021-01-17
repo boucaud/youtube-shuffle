@@ -53,7 +53,7 @@ export default {
       state.videoIds = ids;
     },
     setVideoArray(state, array) {
-      state.videoArray = array;
+      state.videoArray = Object.freeze(array);
     },
     setUrlIdArray(state, array) {
       state.urlIdArray = array;
@@ -81,7 +81,7 @@ export default {
     async shuffleVideos({ state, commit }) {
       const newArray = [...state.videoArray];
       shuffleArray(newArray);
-      commit("setVideoArray", Object.freeze(newArray));
+      commit("setVideoArray", newArray);
       commit("setVideoIndex", 0);
     },
     nextVideo({ state, rootGetters, commit }) {
@@ -106,16 +106,23 @@ export default {
         }
       }
     },
-    async requestVideoArray({ commit, state }) {
+    async requestVideoArray({ commit, state, getters }) {
       // await send request
       // TODO: put in helper, parametrize
       const results = [];
-      const promises = state.urlIdArray.map((playlistId) => {
+      state.urlIdArray.map((playlistId) => {
         const apiRoot = `${window.origin}/api/items?playlistId=${playlistId}`;
         return axios
           .get(apiRoot)
           .then((response) => {
             if (response.status === 200) {
+              const newArray = [
+                ...response.data,
+                ...(getters.getVideoArray || []),
+              ];
+              shuffleArray(newArray);
+              commit("setVideoArray", newArray);
+
               results.push(...response.data);
             } else {
               console.error(
@@ -129,10 +136,6 @@ export default {
             console.error("Request failed", error);
           });
       });
-
-      await Promise.all(promises);
-      shuffleArray(results);
-      commit("setVideoArray", Object.freeze(results));
     },
   },
 };
