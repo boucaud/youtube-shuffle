@@ -61,7 +61,7 @@ def get_youtube_client():
         api_service_name, api_version, developerKey=api_key)
 
 
-@memoizeDaily
+@memoizeWeekly
 def get_playlist_information(playlistId):
     part = 'id,snippet'
 
@@ -74,7 +74,7 @@ def get_playlist_information(playlistId):
     return {}
 
 
-@memoizeDaily
+@memoizeWeekly
 def get_playlist_items(playlistId):
     part = 'id,snippet'
 
