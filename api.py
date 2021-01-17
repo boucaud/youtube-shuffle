@@ -35,11 +35,11 @@ def extractPlaylistInformation(response):
     return {}
 
 
-def memoizeDaily(f):
+def memoizeWeekly(f):
     memo = {}
 
     def helper(x=None):
-        if x not in memo or memo[x]['time'] + datetime.timedelta(days=1) < datetime.datetime.now():
+        if x not in memo or memo[x]['time'] + datetime.timedelta(weeks=1) < datetime.datetime.now():
             memoized = {
                 'item': f(x),
                 'time': datetime.datetime.now()
