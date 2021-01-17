@@ -78,7 +78,11 @@ export default {
       }
       dispatch("redirectToIdArray", { idArray: list });
     },
-    redirectToIdArray(payload, {idArray}) {
+    redirectToIdArray(payload, { idArray }) {
+      if (!idArray || !idArray.length) {
+        window.location.href = window.origin;
+        return;
+      }
       const url = buildURLFromIdArray(idArray); // TODO: check max size
       window.location.href = url;
     },

@@ -12,10 +12,14 @@
         >
           <v-card elevation="4" class="ma-1">
             <v-card-title class="py-0">
-              {{ playlistInformation[id].title }}
+              <span> {{ playlistInformation[id].title }} </span>
+              <v-spacer />
+              <v-btn icon @click="removePlaylist(id)">
+                <v-icon>{{ removeIcon }}</v-icon>
+              </v-btn>
             </v-card-title>
             <v-card-text class="py-1">
-              {{ playlistInformation[id].channel }}
+              <span>{{ playlistInformation[id].channel }}</span>
             </v-card-text>
           </v-card>
         </v-slide-item>
@@ -26,9 +30,13 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { mdiCloseCircleOutline } from "@mdi/js";
 
 export default {
   name: "PlaylistInformation",
+  data: () => ({
+    removeIcon: mdiCloseCircleOutline,
+  }),
   computed: {
     ...mapGetters({
       urlIdArray: "getUrlIdArray",
@@ -44,7 +52,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["fetchPlaylistInformation"]),
+    ...mapActions(["fetchPlaylistInformation", "redirectToIdArray"]),
+    removePlaylist(id) {
+      this.redirectToIdArray({
+        idArray: this.urlIdArray.filter((idInArray) => idInArray !== id),
+      });
+    },
   },
 };
 </script>
