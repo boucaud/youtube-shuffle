@@ -18,6 +18,7 @@
                     <v-text-field
                       label="Playlist ID or URL"
                       v-model="newPlaylistInput"
+                      :rules="[() => !!parseInputListToPlaylistIdArray]"
                     />
                   </v-card-text>
                   <v-card-actions>
@@ -58,6 +59,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { mdiCloseCircleOutline, mdiPlusCircleOutline } from "@mdi/js";
+import { parseInputListToPlaylistIdArray } from "@helpers/inputList";
 
 export default {
   name: "PlaylistInformation",
@@ -87,8 +89,11 @@ export default {
         idArray: this.urlIdArray.filter((idInArray) => idInArray !== id),
       });
     },
-    addPlaylist(id) {
-      this.redirectToIdArray({ idArray: [...this.urlIdArray, id] });
+    addPlaylist(input) {
+      const idArray = parseInputListToPlaylistIdArray(input);
+      if (idArray) {
+        this.redirectToIdArray({ idArray: [...this.urlIdArray, ...idArray] });
+      }
     },
   },
 };
