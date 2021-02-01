@@ -91,10 +91,12 @@ export default {
         const apiRoot = `${window.origin}/api/info?playlistId=${id}`;
         axios.get(apiRoot).then((response) => {
           if (response.status === 200) {
-            commit("setPlaylistInformation", {
-              id,
-              information: response.data,
-            });
+            if (response.data && response.data.title && response.data.channel) {
+              commit("setPlaylistInformation", {
+                id,
+                information: response.data,
+              });
+            }
           }
         });
       });

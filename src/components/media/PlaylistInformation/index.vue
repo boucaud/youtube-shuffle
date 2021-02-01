@@ -18,7 +18,7 @@
                     <v-text-field
                       label="Playlist ID or URL"
                       v-model="newPlaylistInput"
-                      :rules="[() => !!parseInputListToPlaylistIdArray]"
+                      :rules="rules"
                     />
                   </v-card-text>
                   <v-card-actions>
@@ -67,6 +67,7 @@ export default {
     removeIcon: mdiCloseCircleOutline,
     addIcon: mdiPlusCircleOutline,
     newPlaylistInput: "",
+    rules: [() => !!parseInputListToPlaylistIdArray(this.newPlaylistInput)],
   }),
   computed: {
     ...mapGetters({
