@@ -1,7 +1,7 @@
 <template>
   <v-container fluid :class="$style.container">
     <v-row>
-      <v-col lg="6" md="8" width="100%">
+      <v-col lg="6" width="100%">
         <v-container flex :style="{ padding: 0 }">
           <v-row dense>
             <v-col>
@@ -20,8 +20,14 @@
           </v-row>
         </v-container>
       </v-col>
-      <v-col lg="6" md="4">
-        <slot name="playlist" />
+      <v-col lg="6">
+        <v-container flex :style="{ padding: 0 }">
+          <v-row dense>
+            <v-col>
+              <slot name="playlist" />
+            </v-col>
+          </v-row>
+        </v-container>
       </v-col>
     </v-row>
   </v-container>
