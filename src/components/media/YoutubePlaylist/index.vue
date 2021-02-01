@@ -12,7 +12,7 @@
           <v-list-item
             v-for="i in numberOfItemsToDisplay"
             :key="i"
-            :style="{ minHeight: '7vh' }"
+            :style="{ minHeight: '4vh' }"
           >
             <!-- TODO: scale this properly, use LOD -->
             <v-list-item-avatar
