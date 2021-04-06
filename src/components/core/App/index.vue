@@ -15,8 +15,18 @@
           >Youtube-shuffle</a
         ></v-toolbar-title
       >
+
       <v-spacer />
       <span>shuffle and mix large Youtube playlists</span>
+      <v-spacer />
+      <div ref="coffeeHolder">
+        <a href="https://www.buymeacoffee.com/boucaud" target="_blank"
+          ><v-img
+            src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png"
+            alt="Buy Me A Coffee"
+            style="height: 60px !important; width: 217px !important"
+        /></a>
+      </div>
       <v-btn
         icon
         href="https://github.com/boucaud/youtube-shuffle"
