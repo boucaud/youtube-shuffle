@@ -103,6 +103,10 @@ export default {
   mounted() {
     this.handleLocation();
     this.$vuetify.theme.dark = this.darkTheme;
+    const darkTheme = window.localStorage.getItem('darkTheme');
+    if (darkTheme) {
+      this.$store.commit('setDarkTheme', true);
+    }
   },
   methods: {
     ...mapActions(["handleLocation", "requestVideoArray"]),

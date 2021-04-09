@@ -31,6 +31,11 @@ export default {
     },
     setDarkTheme(state, value) {
       state.darkTheme = value;
+      if (value) {
+        localStorage.setItem('darkTheme', 'true');
+      } else {
+        localStorage.removeItem('darkTheme');
+      }
     },
   },
   actions: {},
