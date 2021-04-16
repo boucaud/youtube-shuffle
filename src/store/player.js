@@ -41,6 +41,13 @@ export default {
       }
       return null;
     },
+    getCurrentVideoTitle(state, getters) {
+      const video = getters.getVideoAtIndex(state.currentVideoIndex);
+      if (video) {
+        return video.title;
+      }
+      return '';
+    },
     getPlaylistInformation(state) {
       return state.playlistInformation;
     },

@@ -1,6 +1,8 @@
 <template>
   <v-card>
-    <v-card-title>Now Playing</v-card-title>
+    <v-card-title :class="$style.nowrap"
+      >Now Playing: {{ videoTitle }}</v-card-title
+    >
     <v-card-text>
       <div class="video-container">
         <div ref="player" />
@@ -25,7 +27,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ videoId: "getCurrentVideoId" }),
+    ...mapGetters({
+      videoId: "getCurrentVideoId",
+      videoTitle: "getCurrentVideoTitle",
+    }),
   },
   watch: {
     videoId(id) {
@@ -124,5 +129,13 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+}
+</style>
+<style module>
+.nowrap {
+  white-space: nowrap;
+  word-break: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
