@@ -79,8 +79,11 @@ def get_playlist_items(playlistId):
     part = 'id,snippet'
 
     youtube = get_youtube_client()
-    request = youtube.playlistItems().list(
+    try:
+        request = youtube.playlistItems().list(
         part=part, playlistId=playlistId, maxResults='50')
+    except:
+        return []
     response = request.execute()
 
     items = []
@@ -88,8 +91,11 @@ def get_playlist_items(playlistId):
         items.extend(response['items'])
 
     while response and 'nextPageToken' in response:
-        request = youtube.playlistItems().list(part=part, playlistId=playlistId,
+        try:
+            request = youtube.playlistItems().list(part=part, playlistId=playlistId,
                                                maxResults='50', pageToken=response['nextPageToken'])
+        except:
+            continue                                               
         response = request.execute()
         if response and 'items' in response:
             items.extend(response['items'])
@@ -131,9 +137,12 @@ if __name__ == '__main__':
     })
 
     cherrypy.server.socket_host = '0.0.0.0'
-
     cherrypy.tree.mount(StaticWebsiteService(), '/', 'config/static.cfg')
-    cherrypy.quickstart(YoutubePlaylistService(), '/api')
+    try:
+        cherrypy.quickstart(YoutubePlaylistService(), '/api')
+    except:
+        print('======')
 
+    print('blocking')
     cherrypy.engine.start()
     cherrypy.engine.block()
