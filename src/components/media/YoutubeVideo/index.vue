@@ -38,8 +38,7 @@ export default {
       this.doneBuffering = false;
       this.videoCued = false;
       if (this.player) {
-        this.player.cueVideoById(id);
-        this.player.playVideo(); // check that it worked ? if not, skip ?
+        this.player.loadVideoById(id);
       } else if (!this.initializingPlayer) {
         this.initializePlayer();
       }
@@ -78,6 +77,7 @@ export default {
         videoId: this.videoId,
         events: {
           onReady: () => {
+            this.player.loadVideoById(this.videoId);
             this.player.playVideo();
           },
           onStateChange: this.handlePlayerStateChange,
